@@ -5,6 +5,8 @@ resource "aws_sns_topic" "this" {
 }
 
 data "aws_iam_policy_document" "sns" {
+  provider = aws.receiver
+
   statement {
     sid    = "AllowSenderAccount"
     effect = "Allow"

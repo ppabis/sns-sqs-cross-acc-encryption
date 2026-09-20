@@ -6,6 +6,8 @@ resource "aws_sqs_queue" "this" {
 }
 
 data "aws_iam_policy_document" "sqs" {
+  provider = aws.receiver
+
   statement {
     sid    = "AllowSenderAccount"
     effect = "Allow"

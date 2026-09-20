@@ -1,4 +1,6 @@
 data "aws_iam_policy_document" "lambda_assume_role" {
+  provider = aws.sender
+
   statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
@@ -11,6 +13,8 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 }
 
 data "aws_iam_policy_document" "lambda_messaging" {
+  provider = aws.sender
+
   statement {
     effect = "Allow"
     actions = [
