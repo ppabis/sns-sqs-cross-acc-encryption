@@ -22,10 +22,10 @@ def handler(event, context):
         message_sqs = f"Lambda to SQS: {message}"
         message_sns = f"Lambda to SNS: {message}"
 
-        sqs.send_message(QueueUrl=SQS_QUEUE_URL, MessageBody=message)
-        sns.publish(TopicArn=SNS_TOPIC_ARN, Message=message)
+        sqs.send_message(QueueUrl=SQS_QUEUE_URL, MessageBody=message_sqs)
+        sns.publish(TopicArn=SNS_TOPIC_ARN, Message=message_sns)
 
         return {"statusCode": 200, "body": message}
     except Exception as e:
-        logger.exception("failed to send message")
+        logger.exception(f"failed to send message: {e}")
         return {"statusCode": 500, "body": str(e)}
