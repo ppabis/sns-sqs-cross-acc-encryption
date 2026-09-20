@@ -13,4 +13,11 @@ resource "aws_lambda_function" "this" {
   runtime          = "python3.13"
   filename         = data.archive_file.lambda.output_path
   source_code_hash = data.archive_file.lambda.output_base64sha256
+
+  environment {
+    variables = {
+      SNS_TOPIC_ARN = aws_sns_topic.this.arn
+      SQS_QUEUE_URL = aws_sqs_queue.this.url
+    }
+  }
 }
