@@ -18,6 +18,8 @@ def handler(event, context):
     try:
         now = datetime.now(timezone.utc)
         message = f"{now:%A}, {now.day} {now:%B %Y} at {now:%H:%M} UTC"
+        if isinstance(event, dict) and "body" in event:
+            message = f"{message} [{event['body']}]"
 
         message_sqs = f"Lambda to SQS: {message}"
         message_sns = f"Lambda to SNS: {message}"
