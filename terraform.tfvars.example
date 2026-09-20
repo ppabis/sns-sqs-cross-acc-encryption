@@ -1,3 +1,4 @@
 # Copy this file to terraform.tfvars and fill in the values.
 
-sender = "<SENDER_ACCOUNT_ID>"
+sender                 = "<SENDER_ACCOUNT_ID>"
+sns_subscription_email = ""

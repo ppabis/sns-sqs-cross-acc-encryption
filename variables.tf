@@ -7,3 +7,9 @@ variable "sender" {
     error_message = "sender must be a 12-digit AWS account ID."
   }
 }
+
+variable "sns_subscription_email" {
+  type        = string
+  description = "If set, subscribe this email to the receiver SNS topic. Leave empty to skip."
+  default     = ""
+}
