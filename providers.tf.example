@@ -1,0 +1,14 @@
+# Copy this file to providers.tf and fill in the values or adapt to your
+# liking.
+
+provider "aws" {
+  alias   = "sender"
+  profile = "<SENDER_PROFILE>"
+  region  = "<AWS_REGION>"
+}
+
+provider "aws" {
+  alias   = "receiver"
+  profile = "<RECEIVER_PROFILE>"
+  region  = "<AWS_REGION>"
+}
