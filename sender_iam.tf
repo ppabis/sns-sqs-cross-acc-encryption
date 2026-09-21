@@ -26,6 +26,19 @@ data "aws_iam_policy_document" "lambda_messaging" {
     ]
     resources = ["*"]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "kms:GenerateDataKey*",
+      "kms:Decrypt",
+      "kms:DescribeKey",
+    ]
+    resources = [
+      "arn:aws:kms:eu-west-1:${var.receiver}:key/*",
+      "arn:aws:kms:eu-west-1:${var.receiver}:alias/*"
+    ]
+  }
 }
 
 resource "aws_iam_role" "lambda" {

@@ -2,3 +2,4 @@
 
 sender                 = "<SENDER_ACCOUNT_ID>"
 sns_subscription_email = ""
+receiver               = "<RECEIVER_ACCOUNT_ID>"
