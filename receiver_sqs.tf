@@ -2,7 +2,7 @@ resource "aws_sqs_queue" "this" {
   provider = aws.receiver
 
   name                    = random_pet.provision.id
-  sqs_managed_sse_enabled = false
+  sqs_managed_sse_enabled = true
 }
 
 data "aws_iam_policy_document" "sqs" {
