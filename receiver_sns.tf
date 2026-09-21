@@ -2,7 +2,7 @@ resource "aws_sns_topic" "this" {
   provider = aws.receiver
 
   name              = random_pet.provision.id
-  kms_master_key_id = "alias/aws/sns"
+  kms_master_key_id = aws_kms_alias.sns.name
 }
 
 data "aws_iam_policy_document" "sns" {
