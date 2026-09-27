@@ -10,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_visible" {
   period              = 300
   statistic           = "Maximum"
   threshold           = 5
-  alarm_actions       = [aws_sns_topic.this.arn]
+  alarm_actions       = [aws_sns_topic.cloudwatch.arn]
 
   dimensions = {
     QueueName = aws_sqs_queue.this.name
