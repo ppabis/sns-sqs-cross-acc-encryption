@@ -51,7 +51,7 @@ resource "aws_sns_topic_policy" "cloudwatch" {
   provider = aws.receiver
 
   arn    = aws_sns_topic.cloudwatch.arn
-  policy = data.aws_iam_policy_document.sns.json
+  policy = data.aws_iam_policy_document.sns_cloudwatch.json
 }
 
 resource "aws_sns_topic_subscription" "cloudwatch" {
