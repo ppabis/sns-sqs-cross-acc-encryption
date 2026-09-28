@@ -6,8 +6,8 @@ data "aws_iam_policy_document" "kms" {
   provider = aws.receiver
 
   statement {
-    sid    = "EnableOwnAccount"
-    effect = "Allow"
+    sid       = "EnableOwnAccount"
+    effect    = "Allow"
     actions   = ["kms:*"]
     resources = ["*"]
 
@@ -30,6 +30,30 @@ data "aws_iam_policy_document" "kms" {
     principals {
       type        = "AWS"
       identifiers = ["arn:aws:iam::${var.sender}:root"]
+    }
+  }
+
+  statement {
+    sid    = "AllowCloudWatchAndEvents"
+    effect = "Allow"
+    actions = [
+      "kms:GenerateDataKey*",
+      "kms:Decrypt",
+    ]
+    resources = ["*"]
+
+    principals {
+      type = "Service"
+      identifiers = [
+        "cloudwatch.amazonaws.com",
+        "events.amazonaws.com",
+      ]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceAccount"
+      values   = [data.aws_caller_identity.receiver.account_id]
     }
   }
 }

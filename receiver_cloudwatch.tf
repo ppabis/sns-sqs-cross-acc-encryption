@@ -21,7 +21,7 @@ resource "aws_sns_topic" "cloudwatch" {
   provider = aws.receiver
 
   name              = "${aws_sqs_queue.this.name}-visible-messages"
-  kms_master_key_id = "alias/aws/sns"
+  kms_master_key_id = aws_kms_alias.sns.name
 }
 
 data "aws_iam_policy_document" "sns_cloudwatch" {
